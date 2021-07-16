@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Game_australModelContainer" CdmEntityContainer="Game_australEntities">
+    <EntitySetMapping Name="Characteristics_hero">
+      <EntityTypeMapping TypeName="Game_australModel.Characteristics_hero">
+        <MappingFragment StoreEntitySet="Characteristics_hero">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name_hero" ColumnName="name_hero" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="race" ColumnName="race" />
+          <ScalarProperty Name="specialized" ColumnName="specialized" />
+          <ScalarProperty Name="fk_hero" ColumnName="fk_hero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hero">
+      <EntityTypeMapping TypeName="Game_australModel.Hero">
+        <MappingFragment StoreEntitySet="Hero">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Player">
+      <EntityTypeMapping TypeName="Game_australModel.Player">
+        <MappingFragment StoreEntitySet="Player">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
+          <ScalarProperty Name="fk_hero" ColumnName="fk_hero" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

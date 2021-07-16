@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Game_australModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Characteristics_hero">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_hero" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="age" Type="Int32" />
+    <Property Name="race" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="specialized" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="fk_hero" Type="Int32" />
+    <NavigationProperty Name="Hero" Relationship="Self.FK__Character__fk_he__38996AB5" FromRole="Characteristics_hero" ToRole="Hero" />
+  </EntityType>
+  <EntityType Name="Hero">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Characteristics_hero" Relationship="Self.FK__Character__fk_he__38996AB5" FromRole="Hero" ToRole="Characteristics_hero" />
+    <NavigationProperty Name="Player" Relationship="Self.FK__Player__fk_hero__3B75D760" FromRole="Hero" ToRole="Player" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nickname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="fk_hero" Type="Int32" />
+    <Property Name="rating" Type="Int32" />
+    <NavigationProperty Name="Hero" Relationship="Self.FK__Player__fk_hero__3B75D760" FromRole="Player" ToRole="Hero" />
+  </EntityType>
+  <Association Name="FK__Character__fk_he__38996AB5">
+    <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+    <End Role="Characteristics_hero" Type="Self.Characteristics_hero" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hero">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Characteristics_hero">
+        <PropertyRef Name="fk_hero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Player__fk_hero__3B75D760">
+    <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+    <End Role="Player" Type="Self.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hero">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="fk_hero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Game_australEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Characteristics_hero" EntityType="Self.Characteristics_hero" />
+    <EntitySet Name="Hero" EntityType="Self.Hero" />
+    <EntitySet Name="Player" EntityType="Self.Player" />
+    <AssociationSet Name="FK__Character__fk_he__38996AB5" Association="Self.FK__Character__fk_he__38996AB5">
+      <End Role="Hero" EntitySet="Hero" />
+      <End Role="Characteristics_hero" EntitySet="Characteristics_hero" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Player__fk_hero__3B75D760" Association="Self.FK__Player__fk_hero__3B75D760">
+      <End Role="Hero" EntitySet="Hero" />
+      <End Role="Player" EntitySet="Player" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Game_australModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Characteristics_hero">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_hero" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="age" Type="int" />
+    <Property Name="race" Type="nvarchar" MaxLength="50" />
+    <Property Name="specialized" Type="nvarchar" MaxLength="150" />
+    <Property Name="fk_hero" Type="int" />
+  </EntityType>
+  <EntityType Name="Hero">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nickname" Type="nvarchar" MaxLength="250" />
+    <Property Name="fk_hero" Type="int" />
+    <Property Name="rating" Type="int" />
+  </EntityType>
+  <Association Name="FK__Character__fk_he__38996AB5">
+    <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+    <End Role="Characteristics_hero" Type="Self.Characteristics_hero" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hero">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Characteristics_hero">
+        <PropertyRef Name="fk_hero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Player__fk_hero__3B75D760">
+    <End Role="Hero" Type="Self.Hero" Multiplicity="0..1" />
+    <End Role="Player" Type="Self.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hero">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="fk_hero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище Game_australModelContainer">
+    <EntitySet Name="Characteristics_hero" EntityType="Self.Characteristics_hero" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hero" EntityType="Self.Hero" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Character__fk_he__38996AB5" Association="Self.FK__Character__fk_he__38996AB5">
+      <End Role="Hero" EntitySet="Hero" />
+      <End Role="Characteristics_hero" EntitySet="Characteristics_hero" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Player__fk_hero__3B75D760" Association="Self.FK__Player__fk_hero__3B75D760">
+      <End Role="Hero" EntitySet="Hero" />
+      <End Role="Player" EntitySet="Player" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

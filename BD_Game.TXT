@@ -1,0 +1,32 @@
+/*create database Game_austral;*/
+
+/*use Game_austral;
+create table  Hero
+ (
+ [id] int primary key identity(1,1),
+ name nvarchar(50)
+  );*/
+  /*
+use Game_austral;
+create table  Characteristics_hero
+ (
+ [id] int primary key identity(1,1),
+ name_hero nvarchar(150) not null,
+ gender nvarchar(50) ,
+ age int,
+ race nvarchar(50) ,
+ specialized nvarchar(150) ,
+
+  fk_hero int foreign key references Hero(id),
+ 
+ );*/
+
+/* use Game_austral;
+create table  [Player]
+ (
+ [id] int primary key identity(1,1),
+  [nickname] nvarchar(250),
+  [fk_hero] int foreign key references Hero(id),
+   [rating] int
+
+ );*/
